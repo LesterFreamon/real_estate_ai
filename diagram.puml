@@ -1,0 +1,29 @@
+@startuml
+!define Rectangle class
+
+class "Input Handler" {
+    +Mode Selector()
+    +Questionnaire Processor()
+    +Free-text Processor()
+}
+
+class "NLU with LLM" {
+    +Interpret Input()
+    +Extract Preferences()
+}
+
+class "Data Structurer" {
+    +Structure Preferences()
+    +Generate Embedding()
+}
+
+class "Database Integration" {
+    +Connect to Database()
+    +Generate Query()
+    +Retrieve Listings()
+}
+
+"Input Handler" --> "NLU with LLM" : sends parsed input
+"NLU with LLM" --> "Data Structurer" : sends extracted preferences
+"Data Structurer" --> "Database Integration" : sends embeddings
+@enduml
